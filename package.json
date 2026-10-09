@@ -12,7 +12,8 @@
     "start": "electron .",
     "build": "vite build",
     "test": "node --test tests/*.cjs",
-    "package:mac": "npm run build && electron-builder --mac --dir"
+    "package:mac": "npm run build && electron-builder --mac --dir",
+    "dist:mac": "npm run build && electron-builder --mac dmg --arm64"
   },
   "dependencies": {
     "lucide-react": "1.53.0",
@@ -30,11 +31,18 @@
     "productName": "Arca",
     "mac": {
       "target": [
-        "dir"
+        "dmg"
       ],
       "category": "public.app-category.utilities",
       "icon": "build/arca.icns",
-      "identity": null
+      "identity": "-",
+      "hardenedRuntime": false
+    },
+    "dmg": {
+      "artifactName": "${productName}-${version}-macOS-${arch}.${ext}",
+      "title": "${productName} ${version}",
+      "icon": "build/arca.icns",
+      "writeUpdateInfo": false
     },
     "fileAssociations": [
       {

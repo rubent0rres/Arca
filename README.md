@@ -10,6 +10,20 @@ Arca es un gestor de archivos comprimidos para macOS. Permite explorar, crear y 
 
 Desarrollado por **Rubén J. Torres** · [dev@rubentorres.com.mx](mailto:dev@rubentorres.com.mx)
 
+## Descargar Arca 1.0.0
+
+**[Descargar instalador para macOS · Apple Silicon (arm64)](https://github.com/rubent0rres/Arca/releases/download/v1.0.0/Arca-1.0.0-macOS-arm64.dmg)**
+
+[Notas de la versión](https://github.com/rubent0rres/Arca/releases/tag/v1.0.0) · [Checksum SHA-256](https://github.com/rubent0rres/Arca/releases/download/v1.0.0/SHA256SUMS.txt)
+
+1. Descarga y abre el archivo `.dmg`.
+2. Arrastra **Arca** a **Aplicaciones** dentro de la ventana del instalador.
+3. Expulsa la imagen de disco y abre **Arca** desde Aplicaciones.
+
+Este instalador es para Mac con chip Apple Silicon. No incluye una versión para Mac Intel. 7-Zip viene incluido; para trabajar con RAR, instala también las [herramientas RAR y UnRAR](#herramientas-rar).
+
+Esta versión utiliza una firma local (ad hoc) y no está notarizada por Apple. Si macOS bloquea su primera apertura, consulta la [guía de Apple para abrir aplicaciones descargadas](https://support.apple.com/es-mx/102445).
+
 ## Funciones
 
 - **Explorar:** consulta archivos y carpetas antes de extraerlos y navega con doble clic y rutas de navegación.
@@ -99,7 +113,13 @@ release/mac-arm64/Arca.app
 
 Cierra cualquier versión abierta de Arca y copia la aplicación generada a **Aplicaciones**. Ábrela desde Finder o el Dock.
 
-Este proceso genera un paquete `.app` local. No crea un instalador DMG ni configura firma de distribución o notarización.
+Para generar el instalador de Apple Silicon:
+
+```sh
+npm run dist:mac
+```
+
+El archivo se guarda en `release/Arca-1.0.0-macOS-arm64.dmg`. El empaquetado utiliza una firma ad hoc para uso local; no configura un certificado de distribución ni notarización de Apple.
 
 ## Uso
 
@@ -136,6 +156,7 @@ Selecciona **Acerca de** en la barra de herramientas. El correo de contacto abre
 | `npm start` | Abre Electron conectado a Vite |
 | `npm run build` | Compila la interfaz en `dist/` |
 | `npm run package:mac` | Compila y empaqueta la aplicación para macOS |
+| `npm run dist:mac` | Genera el instalador DMG para Apple Silicon |
 | `npm test` | Ejecuta las pruebas de regresión existentes |
 
 Las pruebas de regresión necesitan `/Applications/rar/rar` y el ejecutable incluido `vendor/7zip/7zz`. Generan archivos temporales para cubrir contraseñas, navegación y extracción en los formatos compatibles.
