@@ -1,0 +1,81 @@
+{
+  "name": "arca",
+  "version": "1.0.0",
+  "description": "Gestor de archivos RAR, 7z y ZIP para macOS",
+  "author": {
+    "name": "Rubén J. Torres",
+    "email": "dev@rubentorres.com.mx"
+  },
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "start": "electron .",
+    "build": "vite build",
+    "test": "node --test tests/*.cjs",
+    "package:mac": "npm run build && electron-builder --mac --dir"
+  },
+  "dependencies": {
+    "lucide-react": "1.53.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "6.1.2",
+    "electron": "44.7.0",
+    "electron-builder": "26.15.3",
+    "vite": "8.3.4"
+  },
+  "build": {
+    "appId": "com.myunrar.desktop",
+    "productName": "Arca",
+    "mac": {
+      "target": [
+        "dir"
+      ],
+      "category": "public.app-category.utilities",
+      "icon": "build/arca.icns",
+      "identity": null
+    },
+    "fileAssociations": [
+      {
+        "ext": "rar",
+        "name": "RAR Archive",
+        "description": "Archivo RAR",
+        "rank": "Alternate",
+        "role": "Viewer"
+      },
+      {
+        "ext": "7z",
+        "name": "7-Zip Archive",
+        "description": "Archivo 7z",
+        "rank": "Alternate",
+        "role": "Viewer"
+      },
+      {
+        "ext": "zip",
+        "name": "ZIP Archive",
+        "description": "Archivo ZIP",
+        "rank": "Alternate",
+        "role": "Viewer"
+      }
+    ],
+    "extraResources": [
+      {
+        "from": "vendor/7zip/7zz",
+        "to": "7zz"
+      },
+      {
+        "from": "vendor/7zip/License.txt",
+        "to": "licenses/7zip-License.txt"
+      }
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ]
+  }
+}
